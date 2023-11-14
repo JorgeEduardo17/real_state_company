@@ -1,0 +1,26 @@
+# Version of the Docker Compose specification
+version: '3.8'
+
+services:
+  # Definition of service Web
+  web:
+    build: .
+    volumes:
+      - ./app/images:/images
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - MONGODB_URI=mongodb://db:27017/realStateCompany
+  # Definition of service DB
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+# Definition of Volumes
+volumes:
+  mongo_data:
