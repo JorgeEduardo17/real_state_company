@@ -2,7 +2,17 @@ from bson import ObjectId
 
 
 class PyObjectId(ObjectId):
-    """Clase para manejar ObjectId de MongoDB en modelos Pydantic."""
+    """
+    Custom class that extends MongoDB ObjectId for use in Pydantic models.
+
+    This class allows the validation and serialization of MongoDB ObjectId in Pydantic models,
+    facilitating its use in input and output operations, especially in RESTful APIs.
+
+    Methods:
+        __get_validators__: class method that returns the validators of the class.
+        validate(cls, v): Validates and converts an entry into a valid MongoDB ObjectId.
+        __modify_schema__(cls, field_schema): Modifies the Pydantic schema for this type.
+    """
 
     @classmethod
     def __get_validators__(cls):

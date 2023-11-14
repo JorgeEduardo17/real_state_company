@@ -3,4 +3,7 @@ uvicorn==0.15.0
 pymongo==3.12.0
 python-dotenv
 pytest
+pytest-mock
 python-multipart
+coverage
+requests

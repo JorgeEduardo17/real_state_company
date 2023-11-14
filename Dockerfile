@@ -1,18 +1,15 @@
-# Utiliza la imagen base oficial de Python
+# Uses the official Python base image
 FROM python:3.11.5-slim
 
-# Establece el directorio de trabajo dentro del contenedor
+# Sets the working directory inside the container
 WORKDIR /app
 
-# Instala las dependencias de Python
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-# Crea el directorio /images y asigna los permisos adecuados
-#RUN mkdir -p /app/images && chmod 755 /app/images
-
-# Copia el resto de los archivos de la aplicación al directorio de trabajo
+# Copies the rest of the application files to the working directory
 COPY . .
 
-# Indica el comando predeterminado para ejecutar la aplicación
+# Specifies the default command to run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--reload"]
